@@ -13,6 +13,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "productLine")
     private ProductLine productLine;
+
     private String productScale;
     private String productVendor;
     private String productDescription;
