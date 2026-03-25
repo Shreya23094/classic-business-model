@@ -9,7 +9,10 @@ public class Product {
     @Id
     private String productCode;
     private String productName;
-    private String productLine;
+
+    @ManyToOne
+    @JoinColumn(name = "productLine")
+    private ProductLine productLine;
     private String productScale;
     private String productVendor;
     private String productDescription;
