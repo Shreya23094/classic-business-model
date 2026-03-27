@@ -15,12 +15,12 @@ public class Payment {
     @JoinColumn(name = "customerNumber", nullable = false)
     private Customer customer;
     private LocalDate paymentDate;
-    private double amount;
+    private Double amount;
 
     public Payment() {
     }
 
-    public Payment(double amount, String checkNumber, Customer customer, LocalDate paymentDate) {
+    public Payment(Double amount, String checkNumber, Customer customer, LocalDate paymentDate) {
         this.amount = amount;
         this.checkNumber = checkNumber;
         this.customer = customer;
@@ -52,11 +52,11 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 }

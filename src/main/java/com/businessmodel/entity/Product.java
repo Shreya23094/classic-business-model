@@ -17,14 +17,14 @@ public class Product {
     private String productScale;
     private String productVendor;
     private String productDescription;
-    private int quantityInStock;
-    private double buyPrice;
-    private double MSRP;
+    private Integer quantityInStock;
+    private Double buyPrice;
+    private Double MSRP;
 
     public Product() {
     }
 
-    public Product(double buyPrice, double MSRP, String productCode, String productDescription, String productLine, String productName, String productScale, String productVendor, int quantityInStock) {
+    public Product(Double buyPrice, Double MSRP, String productCode, String productDescription, ProductLine productLine, String productName, String productScale, String productVendor, Integer quantityInStock) {
         this.buyPrice = buyPrice;
         this.MSRP = MSRP;
         this.productCode = productCode;
@@ -52,11 +52,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public String getProductLine() {
+    public ProductLine getProductLine() {
         return productLine;
     }
 
-    public void setProductLine(String productLine) {
+    public void setProductLine(ProductLine productLine) {
         this.productLine = productLine;
     }
 
@@ -84,27 +84,27 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public int getQuantityInStock() {
+    public Integer getQuantityInStock() {
         return quantityInStock;
     }
 
-    public void setQuantityInStock(int quantityInStock) {
+    public void setQuantityInStock(Integer quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
 
-    public double getBuyPrice() {
+    public Double getBuyPrice() {
         return buyPrice;
     }
 
-    public void setBuyPrice(double buyPrice) {
+    public void setBuyPrice(Double buyPrice) {
         this.buyPrice = buyPrice;
     }
 
-    public double getMSRP() {
+    public Double getMSRP() {
         return MSRP;
     }
 
-    public void setMSRP(double MSRP) {
+    public void setMSRP(Double MSRP) {
         this.MSRP = MSRP;
     }
 }
