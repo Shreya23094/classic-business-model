@@ -1,5 +1,6 @@
 package com.businessmodel.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,21 +8,26 @@ import java.util.Objects;
 @Embeddable
 public class PaymentId implements Serializable {
 
-    private int customerNumber;
+    private static final long serialVersionUID = 1L;
+
+    @Column(name = "customerNumber")
+    private Integer customerNumber;
+
+    @Column(name = "checkNumber")
     private String checkNumber;
 
     public PaymentId() {}
 
-    public PaymentId(int customerNumber, String checkNumber) {
+    public PaymentId(Integer customerNumber, String checkNumber) {
         this.customerNumber = customerNumber;
         this.checkNumber = checkNumber;
     }
 
-    public int getCustomerNumber() {
+    public Integer getCustomerNumber() {
         return customerNumber;
     }
 
-    public void setCustomerNumber(int customerNumber) {
+    public void setCustomerNumber(Integer customerNumber) {
         this.customerNumber = customerNumber;
     }
 
@@ -38,7 +44,7 @@ public class PaymentId implements Serializable {
         if (this == o) return true;
         if (!(o instanceof PaymentId)) return false;
         PaymentId that = (PaymentId) o;
-        return customerNumber == that.customerNumber &&
+        return Objects.equals(customerNumber, that.customerNumber) &&
                 Objects.equals(checkNumber, that.checkNumber);
     }
 

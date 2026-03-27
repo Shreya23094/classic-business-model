@@ -2,29 +2,56 @@ package com.businessmodel.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "customers")
 public class Customer {
+
     @Id
+    @Column(name = "customerNumber")
     private Integer customerNumber;
+
+    @Column(name = "customerName")
     private String customerName;
+
+    @Column(name = "contactLastName")
     private String contactLastName;
+
+    @Column(name = "contactFirstName")
     private String contactFirstName;
+
+    @Column(name = "phone")
     private String phone;
+
+    @Column(name = "addressLine1")
     private String addressLine1;
+
+    @Column(name = "addressLine2")
     private String addressLine2;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "state")
     private String state;
+
+    @Column(name = "postalCode")
     private String postalCode;
+
+    @Column(name = "country")
     private String country;
+
     @ManyToOne
-    @JoinColumn(name = "salesRepEmployeeNumber")
+    @JoinColumn(name = "salesRepEmployeeNumber", referencedColumnName = "employeeNumber")
     private Employee salesRep;
-    private Double creditLimit;
+
+    @Column(name = "creditLimit")
+    private BigDecimal creditLimit;
 
     public Customer() {}
 
-    public Customer(Integer customerNumber, String customerName, String contactLastName, String contactFirstName, String phone, String addressLine1, String addressLine2, String city, String state, String postalCode, String country, Employee salesRep, Double creditLimit) {
+    public Customer(Integer customerNumber, String customerName, String contactLastName, String contactFirstName, String phone, String addressLine1, String addressLine2, String city, String state, String postalCode, String country, Employee salesRep, BigDecimal  creditLimit) {
         this.customerNumber = customerNumber;
         this.customerName = customerName;
         this.contactLastName = contactLastName;
@@ -136,11 +163,11 @@ public class Customer {
         this.salesRep = salesRep;
     }
 
-    public Double getCreditLimit() {
+    public BigDecimal  getCreditLimit() {
         return creditLimit;
     }
 
-    public void setCreditLimit(Double creditLimit) {
+    public void setCreditLimit(BigDecimal  creditLimit) {
         this.creditLimit = creditLimit;
     }
 }

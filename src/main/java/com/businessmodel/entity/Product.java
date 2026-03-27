@@ -2,31 +2,47 @@ package com.businessmodel.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "products")
 public class Product {
 
     @Id
+    @Column(name = "productCode")
     private String productCode;
+
+    @Column(name = "productName")
     private String productName;
 
     @ManyToOne
-    @JoinColumn(name = "productLine")
+    @JoinColumn(name = "productLine", referencedColumnName = "productLine")
     private ProductLine productLine;
 
+    @Column(name = "productScale")
     private String productScale;
+
+    @Column(name = "productVendor")
     private String productVendor;
+
+    @Column(name = "productDescription")
     private String productDescription;
-    private Integer quantityInStock;
-    private Double buyPrice;
-    private Double MSRP;
+
+    @Column(name = "quantityInStock")
+    private Short quantityInStock;
+
+    @Column(name = "buyPrice")
+    private BigDecimal buyPrice;
+
+    @Column(name = "MSRP")
+    private BigDecimal  msrp;
 
     public Product() {
     }
 
-    public Product(Double buyPrice, Double MSRP, String productCode, String productDescription, ProductLine productLine, String productName, String productScale, String productVendor, Integer quantityInStock) {
+    public Product(BigDecimal  buyPrice, BigDecimal  msrp, String productCode, String productDescription, ProductLine productLine, String productName, String productScale, String productVendor, Short quantityInStock) {
         this.buyPrice = buyPrice;
-        this.MSRP = MSRP;
+        this.msrp = msrp;
         this.productCode = productCode;
         this.productDescription = productDescription;
         this.productLine = productLine;
@@ -84,27 +100,27 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public Integer getQuantityInStock() {
+    public Short getQuantityInStock() {
         return quantityInStock;
     }
 
-    public void setQuantityInStock(Integer quantityInStock) {
+    public void setQuantityInStock(Short quantityInStock) {
         this.quantityInStock = quantityInStock;
     }
 
-    public Double getBuyPrice() {
+    public BigDecimal  getBuyPrice() {
         return buyPrice;
     }
 
-    public void setBuyPrice(Double buyPrice) {
+    public void setBuyPrice(BigDecimal  buyPrice) {
         this.buyPrice = buyPrice;
     }
 
-    public Double getMSRP() {
-        return MSRP;
+    public BigDecimal  getMSRP() {
+        return msrp;
     }
 
-    public void setMSRP(Double MSRP) {
-        this.MSRP = MSRP;
+    public void setMSRP(BigDecimal  msrp) {
+        this.msrp = msrp;
     }
 }

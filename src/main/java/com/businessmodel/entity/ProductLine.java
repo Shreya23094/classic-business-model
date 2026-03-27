@@ -25,7 +25,6 @@ public class ProductLine {
     @Column(name = "image", columnDefinition = "MEDIUMBLOB")
     private byte[] image;
 
-    //  One ProductLine → Many Products
     @OneToMany(mappedBy = "productLine", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Product> products=new ArrayList<>();
 

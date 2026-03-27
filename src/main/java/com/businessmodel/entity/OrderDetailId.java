@@ -1,5 +1,6 @@
 package com.businessmodel.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,11 +8,15 @@ import java.util.Objects;
 @Embeddable
 public class OrderDetailId implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Column(name = "orderNumber")
     private Integer orderNumber;
+
+    @Column(name = "productCode")
     private String productCode;
 
-    public OrderDetailId() {
-    }
+    public OrderDetailId() {}
 
     public OrderDetailId(Integer orderNumber, String productCode) {
         this.orderNumber = orderNumber;

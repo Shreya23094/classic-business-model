@@ -2,6 +2,8 @@ package com.businessmodel.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "orderdetails")
 public class OrderDetail {
@@ -9,29 +11,29 @@ public class OrderDetail {
     @EmbeddedId
     private OrderDetailId id;
 
-    @Column(nullable = false)
+    @Column(name = "quantityOrdered", nullable = false)
     private Integer quantityOrdered;
 
-    @Column(nullable = false)
-    private Double priceEach;
+    @Column(name = "priceEach", nullable = false)
+    private BigDecimal priceEach;
 
-    @Column(nullable = false)
+    @Column(name = "orderLineNumber", nullable = false)
     private Short orderLineNumber;
 
     @ManyToOne
     @MapsId("orderNumber")
-    @JoinColumn(name = "orderNumber")
+    @JoinColumn(name = "orderNumber", referencedColumnName = "orderNumber")
     private Order order;
 
     @ManyToOne
     @MapsId("productCode")
-    @JoinColumn(name = "productCode")
+    @JoinColumn(name = "productCode", referencedColumnName = "productCode")
     private Product product;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(OrderDetailId id, Integer quantityOrdered, Double priceEach, Short orderLineNumber, Order order, Product product) {
+    public OrderDetail(OrderDetailId id, Integer quantityOrdered, BigDecimal  priceEach, Short orderLineNumber, Order order, Product product) {
         this.id = id;
         this.quantityOrdered = quantityOrdered;
         this.priceEach = priceEach;
@@ -56,11 +58,11 @@ public class OrderDetail {
         this.quantityOrdered = quantityOrdered;
     }
 
-    public Double getPriceEach() {
+    public BigDecimal  getPriceEach() {
         return priceEach;
     }
 
-    public void setPriceEach(Double priceEach) {
+    public void setPriceEach(BigDecimal  priceEach) {
         this.priceEach = priceEach;
     }
 

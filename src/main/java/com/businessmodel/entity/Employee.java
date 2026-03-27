@@ -5,18 +5,32 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "employees")
 public class Employee {
+
     @Id
+    @Column(name = "employeeNumber")
     private Integer employeeNumber;
+
+    @Column(name = "lastName")
     private String lastName;
+
+    @Column(name = "firstName")
     private String firstName;
+
+    @Column(name = "extension")
     private String extension;
+
+    @Column(name = "email")
     private String email;
+
     @ManyToOne
-    @JoinColumn(name = "officeCode")
+    @JoinColumn(name = "officeCode", referencedColumnName = "officeCode")
     private Office office;
+
     @ManyToOne
-    @JoinColumn(name = "reportsTo")
+    @JoinColumn(name = "reportsTo", referencedColumnName = "employeeNumber")
     private Employee manager;
+
+    @Column(name = "jobTitle")
     private String jobTitle;
 
     public Employee() {}
