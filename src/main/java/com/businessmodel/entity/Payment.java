@@ -1,10 +1,20 @@
 package com.businessmodel.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "payments")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Payment {
 
     @EmbeddedId
@@ -12,54 +22,13 @@ public class Payment {
 
     @ManyToOne
     @MapsId("customerNumber")
-    @JoinColumn(name = "customerNumber")
+    @JoinColumn(name = "customerNumber", referencedColumnName = "customerNumber")
     private Customer customer;
 
     @Column(name = "paymentDate", nullable = false)
     private LocalDate paymentDate;
 
     @Column(name = "amount", nullable = false)
-    private Double amount;
+    private BigDecimal amount;
 
-    public Payment() {
-    }
-
-    public Payment(Double amount, Customer customer, PaymentId id, LocalDate paymentDate) {
-        this.amount = amount;
-        this.customer = customer;
-        this.id = id;
-        this.paymentDate = paymentDate;
-    }
-
-    public PaymentId getId() {
-        return id;
-    }
-
-    public void setId(PaymentId id) {
-        this.id = id;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public LocalDate getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(LocalDate paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
 }
