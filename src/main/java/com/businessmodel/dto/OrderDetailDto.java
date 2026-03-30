@@ -2,6 +2,8 @@ package com.businessmodel.dto;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -11,6 +13,6 @@ public class OrderDetailDto {
 
     private String productCode;
     private String productName;
-    private int quantityOrdered;
-    private double priceEach;
+    private Integer quantityOrdered;
+    private BigDecimal priceEach;
 }

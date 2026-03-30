@@ -3,6 +3,7 @@ package com.businessmodel.dto;
 import lombok.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -12,8 +13,8 @@ import java.util.List;
 @Builder
 public class OrderWithDetailsDto {
 
-    private int orderNumber;
-    private Date orderDate;
+    private Integer orderNumber;
+    private LocalDate orderDate;
     private String status;
     private String customerName;
 
