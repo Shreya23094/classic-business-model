@@ -1,8 +1,6 @@
 package com.businessmodel.dto;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import java.sql.Date;
 import java.time.LocalDate;
 
 @Getter
@@ -11,6 +9,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class OrderDto {
+
     private Integer orderNumber;
     private LocalDate orderDate;
     private LocalDate requiredDate;

@@ -4,10 +4,8 @@ import com.businessmodel.dto.*;
 import com.businessmodel.entity.*;
 import com.businessmodel.repository.*;
 import com.businessmodel.service.OrderService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +17,6 @@ public class OrderServiceImpl implements OrderService {
     private final CustomerRepo customerRepo;
     private final OrderDetailRepo orderDetailRepo;
 
-    // 🔹 1. Orders by status
     @Override
     public List<OrderDto> getOrdersByStatus(String status) {
         return orderRepo.findByStatus(status)
@@ -28,9 +25,8 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
     }
 
-    // 🔹 2. Orders by customer
     @Override
-    public List<OrderDto> getOrdersByCustomer(int customerId) {
+    public List<OrderDto> getOrdersByCustomerId(Integer customerId) {
 
         Customer customer = customerRepo.findById(customerId)
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
@@ -41,9 +37,8 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
     }
 
-    // 🔹 3. Orders by customer + status
     @Override
-    public List<OrderDto> getOrdersByCustomerAndStatus(int customerId, String status) {
+    public List<OrderDto> getOrdersByCustomerIdAndStatus(Integer customerId, String status) {
 
         return orderRepo.findByCustomer_CustomerNumberAndStatus(customerId, status)
                 .stream()
@@ -51,9 +46,8 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
     }
 
-    // 🔥 4. Order with details
     @Override
-    public OrderWithDetailsDto getOrderWithDetails(int orderId) {
+    public OrderWithDetailsDto getOrderWithDetails(Integer orderId) {
 
         Order order = orderRepo.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
@@ -78,7 +72,6 @@ public class OrderServiceImpl implements OrderService {
                 .build();
     }
 
-    // 🔧 Helper
     private OrderDto convertToDTO(Order order) {
 
         return OrderDto.builder()

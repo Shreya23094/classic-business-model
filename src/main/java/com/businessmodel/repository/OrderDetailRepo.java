@@ -1,10 +1,11 @@
 package com.businessmodel.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.businessmodel.entity.OrderDetail;
-import com.businessmodel.entity.OrderDetailId;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.List;
 
-public interface OrderDetailRepo extends JpaRepository<OrderDetail, OrderDetailId> {
-
+@Repository
+public interface OrderDetailRepo extends JpaRepository<OrderDetail, Integer> {
+    List<OrderDetail> findByOrder_OrderNumber(int orderNumber);
 }
