@@ -1,8 +1,8 @@
 package com.businessmodel.service.impl;
 
 import com.businessmodel.dto.*;
-import com.businessmodel.dto.mapper.CustomerEntityMapper;
-import com.businessmodel.dto.mapper.OrderEntityMapper;
+import com.businessmodel.mapper.CustomerMapper;
+import com.businessmodel.mapper.OrderMapper;
 import com.businessmodel.entity.Customer;
 import com.businessmodel.entity.Employee;
 import com.businessmodel.entity.Order;
@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
     public List<CustomerDto> getCustomersByCountry(String country) {
         List<Customer> customer=customerRepo.findByCountry(country);
         List<CustomerDto> customerDto=new ArrayList<>();
-        customer.forEach(c->customerDto.add(CustomerEntityMapper.toCustomerDto(c)));
+        customer.forEach(c->customerDto.add(CustomerMapper.toCustomerDto(c)));
         return customerDto;
     }
 
@@ -36,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
     public List<CustomerDto> getTopCustomers() {
         List<Customer> customer=customerRepo.findTop10ByOrderByCreditLimitDesc();
         List<CustomerDto> customerDto=new ArrayList<>();
-        customer.forEach(c->customerDto.add(CustomerEntityMapper.toCustomerDto(c)));
+        customer.forEach(c->customerDto.add(CustomerMapper.toCustomerDto(c)));
         return customerDto;
     }
 
@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
     public List<OrderDto> getOrdersByCustomer(Integer customerId) {
         List<Order> orders=orderRepo.findByCustomerCustomerNumber(customerId);
         List<OrderDto> orderDto=new ArrayList<>();
-        orders.forEach(o-> OrderEntityMapper.toOrderDto(o));
+        orders.forEach(o-> OrderMapper.toOrderDto(o));
         return orderDto;
     }
 
@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
     public List<OrderDto> getOrdersByCustomerIdAndStatus(Integer customerId, String status) {
         List<Order> orders=orderRepo.findByCustomerCustomerNumberAndStatus(customerId, status);
         List<OrderDto> orderDto=new ArrayList<>();
-        orders.forEach(o->OrderEntityMapper.toOrderDto(o));
+        orders.forEach(o-> OrderMapper.toOrderDto(o));
         return orderDto;
     }
 
