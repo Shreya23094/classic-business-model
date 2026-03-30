@@ -32,7 +32,6 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public AmountDto getTotalRevenue() {
-	
 
 		    List<Payment> allPayments = prepo.findAll();
 
@@ -40,9 +39,8 @@ public class PaymentServiceImpl implements PaymentService {
 		    for (Payment payment : allPayments) {
 		        totalRevenue = totalRevenue.add(payment.getAmount());
 		    }
-
-			return paymap.toRevenueDto(totalRevenue);  
-		}
+			return paymap.toRevenueDto(totalRevenue);
 	}
+}
 
 

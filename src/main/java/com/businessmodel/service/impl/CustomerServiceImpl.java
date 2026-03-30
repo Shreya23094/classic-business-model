@@ -48,7 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
     public List<OrderDto> getOrdersByCustomer(Integer customerId) {
         List<Order> orders=orderRepo.findByCustomer_CustomerNumber(customerId);
         List<OrderDto> orderDto=new ArrayList<>();
-        orders.forEach(o-> OrderMapper.toOrderDto(o));
+        orders.forEach(o-> orderDto.add(OrderMapper.toOrderDto(o)));
         return orderDto;
     }
 
@@ -56,10 +56,9 @@ public class CustomerServiceImpl implements CustomerService {
     public List<OrderDto> getOrdersByCustomerIdAndStatus(Integer customerId, String status) {
         List<Order> orders=orderRepo.findByCustomer_CustomerNumberAndStatus(customerId, status);
         List<OrderDto> orderDto=new ArrayList<>();
-        orders.forEach(o-> OrderMapper.toOrderDto(o));
+        orders.forEach(o-> orderDto.add(OrderMapper.toOrderDto(o)));
         return orderDto;
     }
-
     @Override
     public AmountDto getTotalPaymentAmount(Integer customerId) {
         Double total=paymentRepo.sumPaymentByCustomer(customerId);

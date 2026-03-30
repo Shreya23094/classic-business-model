@@ -1,6 +1,7 @@
 package com.businessmodel.controller;
 
 import com.businessmodel.dto.OrderDto;
+import com.businessmodel.dto.SupportDto;
 import com.businessmodel.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Page;
 
 import com.businessmodel.dto.CustomerDto;
 import com.businessmodel.service.CustomerService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/customers")
@@ -57,6 +60,17 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("/{id}/orders_status")
+    public ResponseEntity<List<OrderDto>> getOrdersByCustomerIdAndStatus(
+            @PathVariable Integer id, @RequestParam String status
+    ) {
+        return new ResponseEntity<>(customerService.getOrdersByCustomerIdAndStatus(id,status), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/support")
+    public ResponseEntity<SupportDto> getCustomerSupport(@PathVariable Integer id) {
+        return new ResponseEntity<>(customerService.getCustomerSupport(id), HttpStatus.OK);
+    }
 
 }
 
