@@ -62,4 +62,31 @@ public class OrderServiceImpl implements OrderService {
         return OrderMapper.toOrderWithDetailsDto(order);
     }
 
+    @Override
+    public Page<OrderDto> getOrdersByCustomerIdAndStatus(Integer customerId, String status, int page, int size) {
+
+        if (customerId == null) {
+            throw new BadRequestException("Customer ID cannot be null");
+        }
+
+        if (status == null || status.isBlank()) {
+            throw new BadRequestException("Status cannot be empty");
+        }
+
+        if (page < 0 || size <= 0) {
+            throw new BadRequestException("Invalid pagination parameters");
+        }
+
+        Pageable pageable = PageRequest.of(page, size);
+
+        Page<Order> orders = orderRepo.findByCustomerCustomerNumberAndStatus(customerId, status, pageable);
+
+        if (orders.isEmpty()) {
+            throw new ResourceNotFoundException(
+                    "No orders found for customer id: " + customerId + " with status: " + status);
+        }
+
+        return orders.map(OrderMapper::toOrderDto);
+    }
+
 }
