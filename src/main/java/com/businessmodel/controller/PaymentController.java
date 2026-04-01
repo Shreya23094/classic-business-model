@@ -12,7 +12,7 @@ import com.businessmodel.service.PaymentService;
 @RestController
 @RequestMapping("api/payments")
 public class PaymentController {
-
+	@Autowired
 	private PaymentService paymentService;
 
 	public PaymentController(PaymentService paymentService) {
@@ -21,7 +21,6 @@ public class PaymentController {
 
 	@GetMapping("/revenue")
 	public ResponseEntity<AmountDto> getTotalRevenue() {
-
-		return new ResponseEntity<AmountDto>(paymentService.getTotalRevenue(), HttpStatus.OK);
+		return new ResponseEntity<>(paymentService.getTotalRevenue(), HttpStatus.OK);
 	}
 }

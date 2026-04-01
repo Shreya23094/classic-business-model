@@ -43,22 +43,7 @@ public class CustomerController {
 	@GetMapping("/{id}/orders")
 	public ResponseEntity<?> getOrdersByCustomer(@PathVariable Integer id, @RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "5") int size) {
-
-		try {
-			Page<OrderDto> orders = orderService.getOrdersByCustomer(id, page, size);
-
-			if (orders.isEmpty()) {
-				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No orders found for customer id: " + id);
-			}
-
-			return ResponseEntity.ok(orders);
-
-		} catch (RuntimeException e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
-		}
+		return new ResponseEntity<>(orderService.getOrdersByCustomer(id, page, size), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}/orders_status")
