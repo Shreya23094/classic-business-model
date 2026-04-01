@@ -2,6 +2,7 @@ package com.businessmodel.service.impl;
 
 import com.businessmodel.dto.*;
 import com.businessmodel.entity.*;
+import com.businessmodel.mapper.OrderMapper;
 import com.businessmodel.repository.*;
 import com.businessmodel.service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -53,24 +54,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = orderRepo.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
 
-        List<OrderDetailDto> details = orderDetailRepo
-                .findByOrder_OrderNumber(orderId)
-                .stream()
-                .map(detail -> OrderDetailDto.builder()
-                        .productCode(detail.getProduct().getProductCode())
-                        .productName(detail.getProduct().getProductName())
-                        .quantityOrdered(detail.getQuantityOrdered())
-                        .priceEach(detail.getPriceEach())
-                        .build())
-                .collect(Collectors.toList());
-
-        return OrderWithDetailsDto.builder()
-                .orderNumber(order.getOrderNumber())
-                .orderDate(order.getOrderDate())
-                .status(order.getStatus())
-                .customerName(order.getCustomer().getCustomerName())
-                .orderDetails(details)
-                .build();
+        return OrderMapper.toOrderWithDetailsDto(order);
     }
 
     private OrderDto convertToDTO(Order order) {
