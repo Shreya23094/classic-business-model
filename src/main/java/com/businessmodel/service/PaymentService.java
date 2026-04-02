@@ -1,11 +1,12 @@
 package com.businessmodel.service;
 
+import java.util.List;
+
 import com.businessmodel.dto.AmountDto;
 
 public interface PaymentService {
 
-    public AmountDto getTotalRevenue();
+	public AmountDto getTotalPaymentAmount(Integer customerId);
 
-    public AmountDto getTotalPaymentAmount(Integer customerId);
-
+	public List<AmountDto> getYearlyRevenue();
 }

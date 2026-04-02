@@ -1,5 +1,7 @@
 package com.businessmodel.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +14,15 @@ import com.businessmodel.service.PaymentService;
 @RestController
 @RequestMapping("api/payments")
 public class PaymentController {
-    @Autowired
-    private PaymentService paymentService;
 
-    public PaymentController(PaymentService paymentService) {
-        this.paymentService = paymentService;
-    }
+	private PaymentService paymentService;
 
-    @GetMapping("/revenue")
-    public ResponseEntity<AmountDto> getTotalRevenue() {
-        return new ResponseEntity<>(paymentService.getTotalRevenue(), HttpStatus.OK);
-    }
+	public PaymentController(PaymentService paymentService) {
+		this.paymentService = paymentService;
+	}
+
+	@GetMapping("/revenue")
+	public ResponseEntity<List<AmountDto>> getYearlyRevenue() {
+		return new ResponseEntity<List<AmountDto>>(paymentService.getYearlyRevenue(), HttpStatus.OK);
+	}
 }

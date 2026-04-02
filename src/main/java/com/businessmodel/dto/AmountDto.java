@@ -29,4 +29,10 @@ public class AmountDto {
 
 	private BigDecimal totalAmount;
 
+	private Integer year;
+
+	public AmountDto(Integer year, BigDecimal totalAmount) {
+		this.year = year;
+		this.totalAmount = totalAmount;
+	}
 }

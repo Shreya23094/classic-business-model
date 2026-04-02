@@ -9,10 +9,8 @@ import com.businessmodel.entity.PaymentId;
 
 public class AmountMapper {
 
-	public static AmountDto toRevenueDTO(BigDecimal totalAmount) {
-		AmountDto dto = new AmountDto();
-		dto.setTotalAmount(totalAmount);
-		return dto;
+	public static AmountDto toYearlyDTO(Integer year, BigDecimal revenue) {
+		return new AmountDto(year, revenue);
 	}
 
 	public static AmountDto toCustomerSpendingDto(Integer customerNumber, BigDecimal totalAmount) {
