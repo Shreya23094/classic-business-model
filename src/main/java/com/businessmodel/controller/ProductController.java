@@ -22,4 +22,5 @@ public class ProductController {
     public ResponseEntity<List<ProductDto>> findProductsByProductLine(@RequestParam ProductLine productLine) {
         return new  ResponseEntity<>(productService.findProductsByProductLine(productLine), HttpStatus.OK);
     }
+
 }
