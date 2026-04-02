@@ -23,4 +23,5 @@ public class ProductController {
 
         return productService.findProductsByProductLine(productLine, page, size);
     }
+
 }
