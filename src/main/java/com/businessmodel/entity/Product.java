@@ -38,7 +38,7 @@ public class Product {
     private String productVendor;
 
     @Column(name = "productDescription")
-    private String productDescription;
+    private String productDesc;
 
     @Column(name = "quantityInStock")
     private Short quantityInStock;

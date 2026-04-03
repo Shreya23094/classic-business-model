@@ -5,8 +5,8 @@ import com.businessmodel.entity.Customer;
 
 public class CustomerMapper {
 
-    public static Customer toCustomerEntity(CustomerDto dto) {
-        Customer customer = new Customer();
+    public static Customer toCustomerEntity(final CustomerDto dto) {
+        final Customer customer = new Customer();
         customer.setCustomerNumber(dto.getCustomerNumber());
         customer.setCustomerName(dto.getCustomerName());
         customer.setCountry(dto.getCountry());
@@ -15,7 +15,7 @@ public class CustomerMapper {
         return customer;
     }
 
-    public static CustomerDto toCustomerDto(Customer c) {
+    public static CustomerDto toCustomerDto(final Customer c) {
         return new CustomerDto(
                 c.getCustomerNumber(),
                 c.getCustomerName(),

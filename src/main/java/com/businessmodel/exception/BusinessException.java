@@ -1,8 +1,7 @@
 package com.businessmodel.exception;
 
-@SuppressWarnings("serial")
 public class BusinessException extends RuntimeException {
-    public BusinessException(String message) {
+    public BusinessException(final String message) {
         super(message);
     }
 }

@@ -5,10 +5,8 @@ import com.businessmodel.entity.Product;
 
 public class ProductMapper {
 
-    public static Product toProductEntity(ProductDto dto) {
-        if (dto == null) return null;
-
-        Product product = new Product();
+    public static Product toProductEntity(final ProductDto dto) {
+        final Product product = new Product();
 
         product.setProductCode(dto.getProductCode());
         product.setProductName(dto.getProductName());
@@ -22,8 +20,7 @@ public class ProductMapper {
         return product;
     }
 
-    public static ProductDto toProductDto(Product product) {
-        if (product == null) return null;
+    public static ProductDto toProductDto(final Product product) {
 
         return ProductDto.builder()
                 .productCode(product.getProductCode())
@@ -37,8 +34,10 @@ public class ProductMapper {
                 .build();
     }
 
-    public static void updateProductFromDto(ProductDto dto, Product product) {
-        if (dto == null || product == null) return;
+    public static void updateProductFromDto(final ProductDto dto, final Product product) {
+        if (dto == null || product == null) {
+            return;
+        }
 
         product.setProductName(dto.getProductName());
         product.setProductLine(dto.getProductLine());

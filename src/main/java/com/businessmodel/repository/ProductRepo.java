@@ -8,10 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.businessmodel.entity.Product;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface ProductRepo extends JpaRepository<Product, String> {
-    public Page<Product> findProductByProductLine(ProductLine productLine, Pageable pageable);
+    Page<Product> findProductByProductLine(ProductLine productLine, Pageable pageable);
 
 }

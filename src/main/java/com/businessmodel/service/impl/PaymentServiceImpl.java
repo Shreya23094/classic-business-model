@@ -7,6 +7,7 @@ import com.businessmodel.exception.BadRequestException;
 import com.businessmodel.exception.BusinessException;
 import com.businessmodel.exception.ResourceNotFoundException;
 import com.businessmodel.repository.CustomerRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import com.businessmodel.repository.PaymentRepo;
 import com.businessmodel.service.PaymentService;
 
 @Service
+@RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
 
 	@Autowired
@@ -26,21 +28,17 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public List<AmountDto> getYearlyRevenue() {
 
-		List<AmountDto> result = paymentRepo.getYearlyRevenue();
+		final List<AmountDto> result = paymentRepo.getYearlyRevenue();
 
 		if (result == null) {
 			throw new BusinessException("Unable to fetch yearly revenue data");
 		}
-		if (result.isEmpty()) {
-			return result;
-
-		}
-		return result;
+        return result;
 
 	}
 
 	@Override
-	public AmountDto getTotalPaymentAmount(Integer customerId) {
+	public AmountDto getTotalPaymentAmount(final Integer customerId) {
 
 		if (customerId == null || customerId <= 0) {
 			throw new BadRequestException("Invalid customer ID: " + customerId);
@@ -49,7 +47,7 @@ public class PaymentServiceImpl implements PaymentService {
 		customerRepo.findById(customerId)
 				.orElseThrow(() -> new ResourceNotFoundException("Customer not found with id: " + customerId));
 
-		BigDecimal total = paymentRepo.sumPaymentByCustomer(customerId);
+		final BigDecimal total = paymentRepo.sumPaymentByCustomer(customerId);
 
 		if (total == null) {
 			throw new BusinessException("No payments found this customer having Id:" + customerId);

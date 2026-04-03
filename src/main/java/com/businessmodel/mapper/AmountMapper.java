@@ -9,29 +9,29 @@ import com.businessmodel.entity.PaymentId;
 
 public class AmountMapper {
 
-	public static AmountDto toYearlyDTO(Integer year, BigDecimal revenue) {
+	public static AmountDto toYearlyDTO(final Integer year, final BigDecimal revenue) {
 		return new AmountDto(year, revenue);
 	}
 
-	public static AmountDto toCustomerSpendingDto(Integer customerNumber, BigDecimal totalAmount) {
-		AmountDto dto = new AmountDto();
+	public static AmountDto toCustomerSpendingDto(final Integer customerNumber, final BigDecimal totalAmount) {
+		final AmountDto dto = new AmountDto();
 		dto.setCustomerNumber(customerNumber);
 		dto.setTotalAmount(totalAmount);
 
 		return dto;
 	}
 
-	public static Payment toEntity(AmountDto dto) {
-		PaymentId paymentId = new PaymentId();
+	public static Payment toEntity(final AmountDto dto) {
+		final PaymentId paymentId = new PaymentId();
 		paymentId.setCustomerNumber(dto.getCustomerNumber());
 		paymentId.setCheckNumber(dto.getCheckNumber());
 
-		Payment payment = new Payment();
+		final Payment payment = new Payment();
 		payment.setId(paymentId);
 		payment.setPaymentDate(dto.getPaymentDate());
 		payment.setAmount(dto.getAmount());
 
-		Customer customer = new Customer();
+		final Customer customer = new Customer();
 		customer.setCustomerNumber(dto.getCustomerNumber());
 
 		payment.setCustomer(customer);
@@ -39,9 +39,9 @@ public class AmountMapper {
 		return payment;
 	}
 
-	public static AmountDto toDTO(Payment payment) {
+	public static AmountDto toDTO(final Payment payment) {
 
-		AmountDto dto = new AmountDto();
+		final AmountDto dto = new AmountDto();
 
 		dto.setCustomerNumber(payment.getId().getCustomerNumber());
 		dto.setCheckNumber(payment.getId().getCheckNumber());

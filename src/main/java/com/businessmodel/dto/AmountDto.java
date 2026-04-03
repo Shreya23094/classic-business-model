@@ -31,7 +31,7 @@ public class AmountDto {
 
 	private Integer year;
 
-	public AmountDto(Integer year, BigDecimal totalAmount) {
+	public AmountDto(final Integer year, final BigDecimal totalAmount) {
 		this.year = year;
 		this.totalAmount = totalAmount;
 	}

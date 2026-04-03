@@ -1,8 +1,6 @@
 package com.businessmodel.controller;
 
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +13,14 @@ import com.businessmodel.service.PaymentService;
 @RequestMapping("api/payments")
 public class PaymentController {
 
-	private PaymentService paymentService;
+	private final PaymentService paymentService;
 
-	public PaymentController(PaymentService paymentService) {
+	public PaymentController(final PaymentService paymentService) {
 		this.paymentService = paymentService;
 	}
 
 	@GetMapping("/revenue")
 	public ResponseEntity<List<AmountDto>> getYearlyRevenue() {
-		return new ResponseEntity<List<AmountDto>>(paymentService.getYearlyRevenue(), HttpStatus.OK);
+		return new ResponseEntity<>(paymentService.getYearlyRevenue(), HttpStatus.OK);
 	}
 }
